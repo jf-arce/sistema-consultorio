@@ -2,5 +2,18 @@
 
 GET {{webapi_HostAddress}}/api/pacientes
 Accept: application/json
+###
 
+POST {{webapi_HostAddress}}/api/pacientes
+Content-Type: application/json
+
+{
+    "nombre": "",
+    "apellido": "Pérez",
+    "dni": "12365678",
+    "fechaNacimiento": "1990-01-01",
+    "email": "felipe.perez@example.com",
+    "telefono": "2216548875",
+    "direccion": "Calle Falsa 123"
+}
 ###
