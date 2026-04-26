@@ -39,7 +39,7 @@ public class PacienteService : IPacienteService
         return pacientesDto;
     }
 
-    public async Task<PacienteResponseDto> GetById(int id)
+    public async Task<PacienteResponseDto> GetById(Guid id)
     {
         var pacienteDto = await _db.Pacientes
             .ProjectToType<PacienteResponseDto>()
@@ -51,9 +51,9 @@ public class PacienteService : IPacienteService
         }
 
         return pacienteDto;
-    } 
+    }
 
-    public async Task<PacienteResponseDto> Update(int id, PacienteUpdateDto pacienteUpdateDto)
+    public async Task<PacienteResponseDto> Update(Guid id, PacienteUpdateDto pacienteUpdateDto)
     {
         var paciente = await _db.Pacientes.FindAsync(id);
 
@@ -77,7 +77,7 @@ public class PacienteService : IPacienteService
         return pacienteDto;
     }
 
-    public async Task Delete(int id)
+    public async Task Delete(Guid id)
     {
         var paciente = await _db.Pacientes.FindAsync(id);
 
@@ -86,7 +86,7 @@ public class PacienteService : IPacienteService
             throw new CustomException(HttpStatusCode.NotFound, $"Paciente con ID {id} no encontrado.");
         }
 
-        _db.Pacientes.Remove(paciente);
+        paciente.DeletedAt = DateTime.UtcNow;
         await _db.SaveChangesAsync();
     }
 }

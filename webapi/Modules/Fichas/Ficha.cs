@@ -1,17 +1,18 @@
 using webapi.Modules.Consultas;
 using webapi.Modules.Doctores;
 using webapi.Modules.Pacientes;
+using webapi.Shared;
 
 namespace webapi.Modules.Fichas;
 
-public class Ficha
+public class Ficha : BaseEntity, ISoftDelete
 {
-    public int Id { get; set; }
     public DateOnly FechaCreacion { get; set; }
+    public DateTime? DeletedAt { get; set; }
 
-    public int DoctorId { get; set; }
+    public Guid DoctorId { get; set; }
     public Doctor Doctor { get; set; } = null!;
-    public int PacienteId { get; set; }
+    public Guid PacienteId { get; set; }
     public Paciente Paciente { get; set; } = null!;
     public ICollection<Consulta> Consultas { get; set; } = null!;
 }

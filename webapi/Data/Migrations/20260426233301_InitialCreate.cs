@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -15,11 +15,13 @@ namespace webapi.Data.Migrations
                 name: "Doctores",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Nombre = table.Column<string>(type: "TEXT", nullable: false),
                     Apellido = table.Column<string>(type: "TEXT", nullable: false),
-                    Especialidad = table.Column<string>(type: "TEXT", nullable: false)
+                    Especialidad = table.Column<string>(type: "TEXT", nullable: false),
+                    DeletedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,15 +32,17 @@ namespace webapi.Data.Migrations
                 name: "Pacientes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Nombre = table.Column<string>(type: "TEXT", nullable: false),
                     Apellido = table.Column<string>(type: "TEXT", nullable: false),
                     Dni = table.Column<int>(type: "INTEGER", nullable: false),
                     FechaNacimiento = table.Column<DateOnly>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: true),
                     Telefono = table.Column<string>(type: "TEXT", nullable: true),
-                    Direccion = table.Column<string>(type: "TEXT", nullable: true)
+                    Direccion = table.Column<string>(type: "TEXT", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,11 +53,13 @@ namespace webapi.Data.Migrations
                 name: "Fichas",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     FechaCreacion = table.Column<DateOnly>(type: "TEXT", nullable: false),
-                    DoctorId = table.Column<int>(type: "INTEGER", nullable: false),
-                    PacienteId = table.Column<int>(type: "INTEGER", nullable: false)
+                    DeletedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    DoctorId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    PacienteId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -76,12 +82,14 @@ namespace webapi.Data.Migrations
                 name: "Turnos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Estado = table.Column<string>(type: "TEXT", nullable: false),
-                    PacienteId = table.Column<int>(type: "INTEGER", nullable: false),
-                    DoctorId = table.Column<int>(type: "INTEGER", nullable: false)
+                    DeletedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    PacienteId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    DoctorId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,14 +112,16 @@ namespace webapi.Data.Migrations
                 name: "Consultas",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Fecha = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Motivo = table.Column<string>(type: "TEXT", nullable: true),
                     Diagnostico = table.Column<string>(type: "TEXT", nullable: true),
                     Tratamiento = table.Column<string>(type: "TEXT", nullable: true),
                     Observaciones = table.Column<string>(type: "TEXT", nullable: true),
-                    FichaId = table.Column<int>(type: "INTEGER", nullable: false)
+                    DeletedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    FichaId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

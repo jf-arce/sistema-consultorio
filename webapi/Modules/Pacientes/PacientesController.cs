@@ -28,22 +28,22 @@ public class PacientesController : ControllerBase
         return Ok(pacientes);
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<PacienteResponseDto>> GetById(int id)
+    [HttpGet("{id:guid}")]
+    public async Task<ActionResult<PacienteResponseDto>> GetById(Guid id)
     {
         var paciente = await _pacienteService.GetById(id);
         return Ok(paciente);
     }
 
-    [HttpPatch("{id}")]
-    public async Task<ActionResult<PacienteResponseDto>> Update(int id, PacienteUpdateDto pacienteUpdateDto)
+    [HttpPatch("{id:guid}")]
+    public async Task<ActionResult<PacienteResponseDto>> Update(Guid id, PacienteUpdateDto pacienteUpdateDto)
     {
         var paciente = await _pacienteService.Update(id, pacienteUpdateDto);
         return Ok(paciente);
     }
 
-    [HttpDelete("{id}")]
-    public async Task<ActionResult> Delete(int id)
+    [HttpDelete("{id:guid}")]
+    public async Task<ActionResult> Delete(Guid id)
     {
         await _pacienteService.Delete(id);
         return NoContent();
