@@ -1,12 +1,10 @@
 using System.Net;
 using Microsoft.EntityFrameworkCore;
-using webapi.Application.DTOs;
-using webapi.Application.Interfaces;
 using webapi.Data;
-using webapi.Exceptions;
-using webapi.Models;
+using webapi.Modules.Pacientes.Dto;
+using webapi.Shared.Exceptions;
 
-namespace webapi.Application.Services;
+namespace webapi.Modules.Pacientes;
 
 public class PacienteService : IPacienteService
 {

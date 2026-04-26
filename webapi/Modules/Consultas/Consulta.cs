@@ -1,6 +1,6 @@
-using System;
+using webapi.Modules.Fichas;
 
-namespace webapi.Models;
+namespace webapi.Modules.Consultas;
 
 public class Consulta
 {
@@ -13,5 +13,4 @@ public class Consulta
 
     public int FichaId { get; set; }
     public Ficha Ficha { get; set; } = null!;
-
 }

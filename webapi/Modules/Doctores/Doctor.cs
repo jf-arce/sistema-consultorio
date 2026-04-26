@@ -1,4 +1,7 @@
-namespace webapi.Models;
+using webapi.Modules.Fichas;
+using webapi.Modules.Turnos;
+
+namespace webapi.Modules.Doctores;
 
 public class Doctor
 {
@@ -9,7 +12,6 @@ public class Doctor
 
     public ICollection<Turno> Turnos { get; set; } = null!;
     public ICollection<Ficha> Fichas { get; set; } = null!;
-
 
     public string NombreCompleto()
     {

@@ -1,6 +1,9 @@
-using System;
 using Microsoft.EntityFrameworkCore;
-using webapi.Models;
+using webapi.Modules.Consultas;
+using webapi.Modules.Doctores;
+using webapi.Modules.Fichas;
+using webapi.Modules.Pacientes;
+using webapi.Modules.Turnos;
 
 namespace webapi.Data;
 

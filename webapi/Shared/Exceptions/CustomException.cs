@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace webapi.Exceptions;
+namespace webapi.Shared.Exceptions;
 
 public class CustomException : Exception
 {
@@ -30,5 +30,4 @@ public class CustomException : Exception
             errors = Errors
         };
     }
-
 }

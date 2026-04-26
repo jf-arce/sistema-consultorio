@@ -8,12 +8,12 @@ POST {{webapi_HostAddress}}/api/pacientes
 Content-Type: application/json
 
 {
-    "nombre": "",
-    "apellido": "Pérez",
-    "dni": "12365678",
+    "nombre": "Mariano",
+    "apellido": "Dominguez",
+    "dni": "12365778",
     "fechaNacimiento": "1990-01-01",
-    "email": "felipe.perez@example.com",
-    "telefono": "2216548875",
+    "email": "mariano.dominguez@example.com",
+    "telefono": "2216748875",
     "direccion": "Calle Falsa 123"
 }
 ###

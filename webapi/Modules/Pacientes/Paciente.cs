@@ -1,7 +1,11 @@
-namespace webapi.Application.DTOs;
+using webapi.Modules.Fichas;
+using webapi.Modules.Turnos;
 
-public class CreatePacienteDto
+namespace webapi.Modules.Pacientes;
+
+public class Paciente
 {
+    public int Id { get; set; }
     public string Nombre { get; set; } = null!;
     public string Apellido { get; set; } = null!;
     public int Dni { get; set; }
@@ -9,4 +13,7 @@ public class CreatePacienteDto
     public string? Email { get; set; } = null!;
     public string? Telefono { get; set; } = null!;
     public string? Direccion { get; set; } = null!;
+
+    public Ficha Ficha { get; set; } = null!;
+    public ICollection<Turno> Turnos { get; set; } = null!;
 }

@@ -1,6 +1,8 @@
-using webapi.Enums;
+using webapi.Modules.Doctores;
+using webapi.Modules.Pacientes;
+using webapi.Modules.Turnos.Enums;
 
-namespace webapi.Models;
+namespace webapi.Modules.Turnos;
 
 public class Turno
 {

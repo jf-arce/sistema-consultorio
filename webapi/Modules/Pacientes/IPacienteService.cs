@@ -1,8 +1,6 @@
-using System;
-using webapi.Application.DTOs;
-using webapi.Models;
+using webapi.Modules.Pacientes.Dto;
 
-namespace webapi.Application.Interfaces;
+namespace webapi.Modules.Pacientes;
 
 public interface IPacienteService
 {

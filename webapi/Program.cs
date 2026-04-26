@@ -2,11 +2,11 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using webapi.Application.Interfaces;
-using webapi.Application.Services;
 using webapi.Data;
-using webapi.Exceptions;
+using webapi.Extensions;
 using webapi.Middlewares;
+using webapi.Modules.Pacientes;
+using webapi.Shared.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,27 +23,7 @@ builder.Services.AddScoped<IPacienteService, PacienteService>();
 // Fluent Validation
 builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 builder.Services.AddFluentValidationAutoValidation();
-builder.Services.Configure<ApiBehaviorOptions>(options =>
-{
-    options.InvalidModelStateResponseFactory = context =>
-    {
-        var errors = context.ModelState
-        .SelectMany(x =>
-        {
-            if (x.Value == null) return [];
-
-              return x.Value.Errors.Select(e => new
-                {
-                    field = x.Key,
-                    message = e.ErrorMessage
-                });
-        });
-
-        var ex = new CustomException(errors);
-
-        return new BadRequestObjectResult(ex.ToResponse());
-    };
-});
+builder.Services.AddCustomApiBehavior();
 
 var app = builder.Build();
 

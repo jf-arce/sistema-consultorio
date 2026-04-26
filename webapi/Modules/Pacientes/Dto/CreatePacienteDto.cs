@@ -1,8 +1,7 @@
-namespace webapi.Models;
+namespace webapi.Modules.Pacientes.Dto;
 
-public class Paciente
+public class CreatePacienteDto
 {
-    public int Id { get; set; }
     public string Nombre { get; set; } = null!;
     public string Apellido { get; set; } = null!;
     public int Dni { get; set; }
@@ -10,7 +9,4 @@ public class Paciente
     public string? Email { get; set; } = null!;
     public string? Telefono { get; set; } = null!;
     public string? Direccion { get; set; } = null!;
-
-    public Ficha Ficha { get; set; } = null!;
-    public ICollection<Turno> Turnos { get; set; } = null!;
 }

@@ -1,4 +1,4 @@
-namespace webapi.Enums;
+namespace webapi.Modules.Turnos.Enums;
 
 public enum TurnoEstado
 {

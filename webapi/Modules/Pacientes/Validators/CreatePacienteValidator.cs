@@ -1,7 +1,7 @@
 using FluentValidation;
-using webapi.Application.DTOs;
+using webapi.Modules.Pacientes.Dto;
 
-namespace webapi.Validators;
+namespace webapi.Modules.Pacientes.Validators;
 
 public class CreatePacienteValidator : AbstractValidator<CreatePacienteDto>
 {

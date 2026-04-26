@@ -1,4 +1,4 @@
-using webapi.Exceptions;
+using webapi.Shared.Exceptions;
 
 namespace webapi.Middlewares;
 
