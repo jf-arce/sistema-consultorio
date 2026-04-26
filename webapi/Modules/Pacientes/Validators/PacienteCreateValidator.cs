@@ -3,9 +3,9 @@ using webapi.Modules.Pacientes.Dto;
 
 namespace webapi.Modules.Pacientes.Validators;
 
-public class CreatePacienteValidator : AbstractValidator<CreatePacienteDto>
+public class PacienteCreateValidator : AbstractValidator<PacienteCreateDto>
 {
-    public CreatePacienteValidator()
+    public PacienteCreateValidator()
     {
         RuleFor(x => x.Nombre)
             .NotEmpty().WithMessage("El nombre es obligatorio.")

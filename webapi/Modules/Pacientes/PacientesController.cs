@@ -15,23 +15,37 @@ public class PacientesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Paciente>> Create(CreatePacienteDto createPacienteDto)
+    public async Task<ActionResult<PacienteResponseDto>> Create(PacienteCreateDto pacienteCreateDto)
     {
-        var paciente = await _pacienteService.Create(createPacienteDto);
+        var paciente = await _pacienteService.Create(pacienteCreateDto);
         return CreatedAtAction(nameof(GetById), new { id = paciente.Id }, paciente);
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Paciente>>> GetAll()
+    public async Task<ActionResult<IEnumerable<PacienteResponseDto>>> GetAll()
     {
         var pacientes = await _pacienteService.GetAll();
         return Ok(pacientes);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Paciente>> GetById(int id)
+    public async Task<ActionResult<PacienteResponseDto>> GetById(int id)
     {
         var paciente = await _pacienteService.GetById(id);
         return Ok(paciente);
+    }
+
+    [HttpPatch("{id}")]
+    public async Task<ActionResult<PacienteResponseDto>> Update(int id, PacienteUpdateDto pacienteUpdateDto)
+    {
+        var paciente = await _pacienteService.Update(id, pacienteUpdateDto);
+        return Ok(paciente);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Delete(int id)
+    {
+        await _pacienteService.Delete(id);
+        return NoContent();
     }
 }

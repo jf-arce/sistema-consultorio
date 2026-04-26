@@ -1,6 +1,6 @@
 namespace webapi.Modules.Pacientes.Dto;
 
-public class CreatePacienteDto
+public class PacienteCreateDto
 {
     public string Nombre { get; set; } = null!;
     public string Apellido { get; set; } = null!;
