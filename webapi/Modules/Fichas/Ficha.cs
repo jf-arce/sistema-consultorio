@@ -7,7 +7,6 @@ namespace webapi.Modules.Fichas;
 
 public class Ficha : BaseEntity, ISoftDelete
 {
-    public DateOnly FechaCreacion { get; set; }
     public DateTime? DeletedAt { get; set; }
 
     public Guid DoctorId { get; set; }

@@ -1,12 +1,12 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using webapi.Data;
 using webapi.Extensions;
 using webapi.Middlewares;
+using webapi.Modules.Doctores;
+using webapi.Modules.Fichas;
 using webapi.Modules.Pacientes;
-using webapi.Shared.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +19,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Inyección de dependencias para los servicios
 builder.Services.AddScoped<IPacienteService, PacienteService>();
+builder.Services.AddScoped<IFichaService, FichaService>();
+builder.Services.AddScoped<IDoctorService, DoctorService>();
 
 // Fluent Validation
 builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);

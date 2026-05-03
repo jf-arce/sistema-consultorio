@@ -23,4 +23,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modules\Doctores\dto\" />
+    <Folder Include="Modules\Doctores\validators\" />
+    <Folder Include="Shared\dto\" />
+  </ItemGroup>
+
 </Project>

@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using webapi.Modules.Fichas;
+using webapi.Modules.Fichas.Dto;
 using webapi.Modules.Pacientes.Dto;
 
 namespace webapi.Modules.Pacientes;
@@ -8,10 +10,12 @@ namespace webapi.Modules.Pacientes;
 public class PacientesController : ControllerBase
 {
     private readonly IPacienteService _pacienteService;
+    private readonly IFichaService _fichaService;
 
-    public PacientesController(IPacienteService pacienteService)
+    public PacientesController(IPacienteService pacienteService, IFichaService fichaService)
     {
         _pacienteService = pacienteService;
+        _fichaService = fichaService;
     }
 
     [HttpPost]
@@ -47,5 +51,12 @@ public class PacientesController : ControllerBase
     {
         await _pacienteService.Delete(id);
         return NoContent();
+    }
+
+    [HttpGet("{id:guid}/ficha")]
+    public async Task<ActionResult<FichaResponseDto>> GetFicha(Guid id)
+    {
+        var ficha = await _fichaService.GetByPacienteId(id);
+        return Ok(ficha);
     }
 }

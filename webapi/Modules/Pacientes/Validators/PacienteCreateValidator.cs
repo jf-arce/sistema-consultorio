@@ -31,5 +31,7 @@ public class PacienteCreateValidator : AbstractValidator<PacienteCreateDto>
 
         RuleFor(x => x.Direccion)
             .MaximumLength(100).WithMessage("La dirección no puede tener más de 100 caracteres.");
+        RuleFor(x => x.DoctorId)
+            .NotEmpty().WithMessage("El ID del doctor es obligatorio.");
     }
 }

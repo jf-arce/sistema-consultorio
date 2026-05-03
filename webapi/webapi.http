@@ -1,5 +1,21 @@
 @webapi_HostAddress = http://localhost:5205
 
+// Doctores
+GET {{webapi_HostAddress}}/api/doctores
+Accept: application/json
+###
+
+POST {{webapi_HostAddress}}/api/doctores
+Content-Type: application/json
+
+{
+    "nombre": "Javier",
+    "apellido": "Montoya",
+    "especialidad": "Nutrición para adultos"
+}
+###
+
+// Pacientes
 GET {{webapi_HostAddress}}/api/pacientes
 Accept: application/json
 ###
@@ -10,10 +26,20 @@ Content-Type: application/json
 {
     "nombre": "Mariano",
     "apellido": "Dominguez",
-    "dni": "12365778",
+    "dni": "12361778",
     "fechaNacimiento": "1990-01-01",
     "email": "mariano.dominguez@example.com",
     "telefono": "2216748875",
-    "direccion": "Calle Falsa 123"
+    "direccion": "Calle Falsa 123",
+    "doctorId": "12f97f3c-0641-4e82-96cf-8121199b8b57"
 }
+###
+
+// Recuperar la ficha de un paciente por su ID
+GET {{webapi_HostAddress}}/api/fichas/paciente/aff2092d-249e-4676-a394-31762861cb69
+Accept: application/json
+###
+
+GET {{webapi_HostAddress}}/api/pacientes/aff2092d-249e-4676-a394-31762861cb69/ficha
+Accept: application/json
 ###

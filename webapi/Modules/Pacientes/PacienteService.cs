@@ -2,6 +2,8 @@ using System.Net;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 using webapi.Data;
+using webapi.Modules.Fichas;
+using webapi.Modules.Fichas.Dto;
 using webapi.Modules.Pacientes.Dto;
 using webapi.Shared.Exceptions;
 
@@ -18,9 +20,28 @@ public class PacienteService : IPacienteService
 
     public async Task<PacienteResponseDto> Create(PacienteCreateDto pacienteCreateDto)
     {
+        var dniExistente = await _db.Pacientes.AnyAsync(p => p.Dni == pacienteCreateDto.Dni);
+        if (dniExistente)
+            throw new CustomException(HttpStatusCode.Conflict, $"Ya existe un paciente con el DNI {pacienteCreateDto.Dni}.");
+
+        var doctorExists = await _db.Doctores.AnyAsync(d => d.Id == pacienteCreateDto.DoctorId);
+        if (!doctorExists)
+        {
+            throw new CustomException(HttpStatusCode.NotFound, $"Doctor con ID {pacienteCreateDto.DoctorId} no encontrado.");
+        }
+
         var paciente = pacienteCreateDto.Adapt<Paciente>();
 
+        var fichaCreateDto = new FichaCreateDto
+        {
+            DoctorId = pacienteCreateDto.DoctorId,
+            PacienteId = paciente.Id
+        };
+        var ficha = fichaCreateDto.Adapt<Ficha>();
+
         _db.Pacientes.Add(paciente);
+        _db.Fichas.Add(ficha);
+
         await _db.SaveChangesAsync();
 
         var pacienteDto = paciente.Adapt<PacienteResponseDto>();
@@ -29,7 +50,9 @@ public class PacienteService : IPacienteService
 
     public async Task<IEnumerable<PacienteResponseDto>> GetAll()
     {
-        var pacientesDto = await _db.Pacientes.ProjectToType<PacienteResponseDto>().ToListAsync();
+        var pacientesDto = await _db.Pacientes
+            .ProjectToType<PacienteResponseDto>()
+            .ToListAsync();
 
         if (pacientesDto == null || pacientesDto.Count == 0)
         {
